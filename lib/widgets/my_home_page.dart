@@ -1,4 +1,5 @@
 import 'package:app1/main.dart';
+import 'package:app1/widgets/custom_botton.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,12 +14,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +35,76 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FloatingActionButton(
-                    onPressed: _incrementCounter,
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.exposure_plus_1),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  FloatingActionButton(
-                    onPressed: _incrementCounter,
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.exposure_minus_1),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  FloatingActionButton(
-                    onPressed: _incrementCounter,
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.restart_alt),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 30),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       // FloatingActionButton(
+            //       //   onPressed: () {
+            //       //     setState(() {});
+            //       //     _counter++;
+            //       //   },
+            //       //   child: const Icon(Icons.exposure_plus_1),
+            //       // ),
+            //       CustomBotton.optional(Icon(Icons.exposure_plus_1), () {
+            //         setState(() {
+            //           _counter++;
+            //         });
+            //       }),
+            //       const SizedBox(
+            //         width: 30,
+            //       ),
+            //       CustomBotton.named(
+            //           icon: const Icon(Icons.exposure_minus_1),
+            //           onPress: () {
+            //             if (_counter == 0) return;
+            //             setState(() {
+            //               _counter--;
+            //             });
+            //           }),
+            //       const SizedBox(
+            //         width: 30,
+            //       ),
+            //       CustomBotton(const Icon(Icons.update), () {
+            //         setState(() {
+            //           _counter = 0;
+            //         });
+            //       })
+            //     ],
+            //   ),
+            // ),
           ],
         ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          CustomBotton.optional(const Icon(Icons.exposure_plus_1), () {
+            setState(() {
+              _counter++;
+            });
+          }),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomBotton.named(
+              icon: const Icon(Icons.exposure_minus_1),
+              onPress: () {
+                if (_counter == 0) return;
+                setState(() {
+                  _counter--;
+                });
+              }),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomBotton(const Icon(Icons.update), () {
+            setState(() {
+              _counter = 0;
+            });
+          })
+        ],
       ),
     );
   }
